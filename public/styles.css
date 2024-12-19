@@ -65,7 +65,7 @@ body {
 
 /* Terminal content */
 .content {
-    line-height: 1.;
+    line-height: 1.0;
     white-space: pre-wrap;
     overflow-y: auto;
     height: 100%;
