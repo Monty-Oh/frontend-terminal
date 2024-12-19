@@ -1,0 +1,119 @@
+/* General styles */
+body {
+    background-color: black;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* CRT screen container */
+.crt {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    aspect-ratio: 4 / 3;
+    border: 8px solid #333;
+    border-radius: 15px;
+    background: #000;
+    box-shadow: 
+        inset 0 0 50px rgba(0, 255, 0, 0.2), /* Glow */
+        0 0 30px rgba(0, 255, 0, 0.5);      /* Outer glow */
+    overflow: hidden;
+}
+
+/* Scanline effect */
+.crt::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0) 96%, 
+        rgba(0, 255, 0, 0.05) 100%
+    );
+    background-size: 100% 3px;
+    z-index: 2;
+    pointer-events: none;
+    animation: scanlines 0.2s infinite;
+}
+
+/* Terminal container */
+.terminal {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.1) 0%, black 70%);
+    color: #00ff00;
+    font-family: "Courier New", Courier, monospace;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header style */
+.header {
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Terminal content */
+.content {
+    line-height: 1.;
+    white-space: pre-wrap;
+    overflow-y: auto;
+    height: 100%;
+    text-align: left; /* Ensure all text aligns to the left */
+}
+
+.content p {
+    margin: 0; /* Remove default margins */
+    padding: 2px 0; /* Add consistent padding for spacing */
+}
+
+/* Input line */
+#input-line {
+    display: flex;
+    align-items: center;
+    text-align: left; /* Align input line to the left */
+    padding: 2px 0; /* Match spacing with <p> elements */
+}
+
+/* Blinking cursor */
+.blink {
+    display: inline-block;
+    animation: blink 1s steps(2, start) infinite;
+}
+
+/* Keyframes for blinking cursor */
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Keyframes for scanlines */
+@keyframes scanlines {
+    0% {
+        opacity: 0.05;
+    }
+    50% {
+        opacity: 0.1;
+    }
+    100% {
+        opacity: 0.05;
+    }
+}
+
+/* 터미널 프롬프트 (>) 스타일 */
+.prompt {
+    color: #00ff00;
+    font-weight: bold;
+    margin-right: 5px; /* 텍스트와 간격 */
+}
